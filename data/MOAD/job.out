@@ -1,0 +1,116 @@
+Starting job 37931367
+Running on host p-mc-3477
+Using 16 CPUs
+With GPU: 0
+Total 68047 molecules to process
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error getting protein contacts for 1o23: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Skipping 1o23_1 because of size or contact
+protein_size: 395, molecule_size: 25, protein_contacts: 0
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error getting protein: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error getting protein: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error getting protein contacts for 3d7d: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Skipping 3d7d_0 because of size or contact
+protein_size: 694, molecule_size: 27, protein_contacts: 0
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error getting protein contacts for 2hct: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Skipping 2hct_0 because of size or contact
+protein_size: 252, molecule_size: 22, protein_contacts: 0
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error getting protein contacts for 5yg6: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Skipping 5yg6_7 because of size or contact
+protein_size: 966, molecule_size: 18, protein_contacts: 0
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error getting protein: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Error connecting to database: connection to server at "submit03" (146.186.150.13), port 5433 failed: FATAL:  the database system is in recovery mode
+
+Successfully processed 68039 molecules
