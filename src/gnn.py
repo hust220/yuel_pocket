@@ -99,6 +99,9 @@ class GCL(nn.Module):
         # print('edge_feat.dtype', edge_feat.dtype)
         # print('edge_attr.dtype', edge_attr.dtype)
         # print('edge_mask.dtype', edge_mask.dtype)
+        # print('h.shape', h.shape)
+        # print('row.max()', row.max())
+        # print('col.max()', col.max())
         edge_feat = self.edge_model(h[row], h[col], edge_feat, edge_attr, edge_mask)
         h = self.node_model(h, edge_index, edge_feat, node_attr, node_mask)
         return h, edge_feat
@@ -181,8 +184,9 @@ class GNN(nn.Module):
         # node_mask (b,n_nodes,1) => (b*n_nodes,1)
         # edge_mask (b,n_nodes,1) => (b*n_nodes,1)
 
-        batch_size, _, _ = h.shape
-        h = h.view(-1, self.in_node_nf)
+        # print('h.shape', h.shape)
+        batch_size, _, node_nf = h.shape
+        h = h.view(-1, node_nf)
         edge_index, edge_attr, edge_mask = merge_edges(edge_index, edge_attr, edge_mask, node_mask)
         node_mask = node_mask.view(-1, 1)
 

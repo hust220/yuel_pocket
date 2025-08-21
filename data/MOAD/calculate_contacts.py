@@ -13,82 +13,56 @@ import os
 import tempfile
 import time
 sys.path.append('../../')
-from src import const
-
-DB_ARGS = {
-    'dbname': 'moad',
-    'user': 'juw1179',
-    'host': 'submit03',
-    'port': 5433
-}
-
-# try reconnecting if the connection is failed, and retry 5 times, wait time double each time
-def db_connect(db_args):
-    for i in range(5):
-        try:
-            return psycopg2.connect(**db_args)
-        except Exception as e:
-            print(f"Error connecting to database: {str(e)}")
-            time.sleep(2**i)
-    raise Exception("Failed to connect to database")
+from src import const, db_utils
 
 def add_contacts_column():
     """Add contacts column to proteins table if it doesn't exist"""
-    conn = db_connect(DB_ARGS)
-    cursor = conn.cursor()
-    try:
-        cursor.execute("""
-            ALTER TABLE proteins 
-            ADD COLUMN IF NOT EXISTS contacts bytea
-        """)
-        conn.commit()
-        cursor.close()
-    except Exception as e:
-        print(f"Error adding contacts column: {str(e)}")
-        conn.rollback()
-    finally:
-        if conn:
-            conn.close()
+    with db_utils.db_connection() as conn:
+        cursor = conn.cursor()
+        try:
+            cursor.execute("""
+                ALTER TABLE proteins 
+                ADD COLUMN IF NOT EXISTS contacts bytea
+            """)
+            conn.commit()
+            cursor.close()
+        except Exception as e:
+            print(f"Error adding contacts column: {str(e)}")
+            conn.rollback()
 
 def get_proteins_to_process():
     """Get all proteins that don't have contacts calculated yet"""
-    conn = db_connect(DB_ARGS)
-    try:
-        cursor = conn.cursor()
-        cursor.execute("""
-            SELECT name FROM proteins 
-            WHERE contacts IS NULL
-        """)
-        proteins = cursor.fetchall()
-        cursor.close()
-    except Exception as e:
-        print(f"Error getting proteins to process: {str(e)}")
-        conn.rollback()
-        raise e
-    finally:
-        if conn:
-            conn.close()
-        return proteins if proteins else []
+    with db_utils.db_connection() as conn:
+        try:
+            cursor = conn.cursor()
+            cursor.execute("""
+                SELECT name FROM proteins 
+                WHERE contacts IS NULL
+            """)
+            proteins = cursor.fetchall()
+            cursor.close()
+            return proteins if proteins else []
+        except Exception as e:
+            print(f"Error getting proteins to process: {str(e)}")
+            conn.rollback()
+            raise e
 
 def get_pdb_data(protein_name):
     """Get PDB data for a protein"""
-    conn = db_connect(DB_ARGS)
-    try:
-        cursor = conn.cursor()
-        cursor.execute("""
-            SELECT pdb FROM proteins 
-            WHERE name = %s
-        """, (protein_name,))
-        pdb_data = cursor.fetchone()
-        cursor.close()
-    except Exception as e:
-        print(f"Error getting PDB data for {protein_name}: {str(e)}")
-        conn.rollback()
-        raise e
-    finally:
-        if conn:
-            conn.close()
-        return pdb_data[0].tobytes() if pdb_data else None
+    with db_utils.db_connection() as conn:
+        try:
+            cursor = conn.cursor()
+            cursor.execute("""
+                SELECT pdb FROM proteins 
+                WHERE name = %s
+            """, (protein_name,))
+            pdb_data = cursor.fetchone()
+            cursor.close()
+            return pdb_data[0].tobytes() if pdb_data else None
+        except Exception as e:
+            print(f"Error getting PDB data for {protein_name}: {str(e)}")
+            conn.rollback()
+            raise e
 
 def calculate_contacts(protein_name, pdb_data):
     """Calculate contacts for a protein using external script"""
@@ -124,22 +98,20 @@ def calculate_contacts(protein_name, pdb_data):
 
 def update_protein_contacts(protein_name, contacts_binary):
     """Update protein record with contacts data"""
-    conn = db_connect(DB_ARGS)
-    cursor = conn.cursor()
-    try:
-        cursor.execute("""
-            UPDATE proteins 
-            SET contacts = %s 
-            WHERE name = %s
-        """, (psycopg2.Binary(contacts_binary), protein_name))
-        conn.commit()
-    except Exception as e:
-        print(f"Error updating contacts for {protein_name}: {str(e)}")
-        conn.rollback()
-    finally:
-        if conn:
-            conn.close()
-        cursor.close()
+    with db_utils.db_connection() as conn:
+        cursor = conn.cursor()
+        try:
+            cursor.execute("""
+                UPDATE proteins 
+                SET contacts = %s 
+                WHERE name = %s
+            """, (psycopg2.Binary(contacts_binary), protein_name))
+            conn.commit()
+        except Exception as e:
+            print(f"Error updating contacts for {protein_name}: {str(e)}")
+            conn.rollback()
+        finally:
+            cursor.close()
 
 def process_protein(protein_name):
     """Process a single protein to calculate and store contacts"""

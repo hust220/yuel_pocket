@@ -1,0 +1,495 @@
+HEADER    OXIDOREDUCTASE                          01-APR-14   XXXX              
+TITLE     CRYSTAL STRUCTURE OF COFACTOR-FREE URATE OXIDASE IN COMPLEX WITH THE  
+TITLE    2 5-PEROXO DERIVATIVE OF 9-METYL URIC ACID (X-RAY DOSE, 665 KGY)       
+KEYWDS    OXIDOREDUCTASE, COFACTOR-FREE OXIDASE                                 
+EXPDTA    X-RAY DIFFRACTION                                                     
+AUTHOR    S.BUI,R.A.STEINER                                                     
+JRNL        AUTH   S.BUI,D.VON STETTEN,P.G.JAMBRINA,T.PRANGE,N.COLLOC'H,        
+JRNL        AUTH 2 D.DE SANCTIS,A.ROYANT,E.ROSTA,R.A.STEINER                    
+JRNL        TITL   DIRECT EVIDENCE FOR A PEROXIDE INTERMEDIATE AND A REACTIVE   
+JRNL        TITL 2 ENZYME-SUBSTRATE-DIOXYGEN CONFIGURATION IN A COFACTOR-FREE   
+JRNL        TITL 3 OXIDASE.                                                     
+JRNL        REF    ANGEW. CHEM. INT. ED. ENGL.   V.  53 13710 2014              
+JRNL        REFN                   ESSN 1521-3773                               
+JRNL        PMID   25314114                                                     
+JRNL        DOI    10.1002/ANIE.201405485                                       
+SEQRES   1 H  301  SAC ALA VAL LYS ALA ALA ARG TYR GLY LYS ASP ASN VAL          
+SEQRES   2 H  301  ARG VAL TYR LYS VAL HIS LYS ASP GLU LYS THR GLY VAL          
+SEQRES   3 H  301  GLN THR VAL TYR GLU MET THR VAL CYS VAL LEU LEU GLU          
+SEQRES   4 H  301  GLY GLU ILE GLU THR SER TYR THR LYS ALA ASP ASN SER          
+SEQRES   5 H  301  VAL ILE VAL ALA THR ASP SER ILE LYS ASN THR ILE TYR          
+SEQRES   6 H  301  ILE THR ALA LYS GLN ASN PRO VAL THR PRO PRO GLU LEU          
+SEQRES   7 H  301  PHE GLY SER ILE LEU GLY THR HIS PHE ILE GLU LYS TYR          
+SEQRES   8 H  301  ASN HIS ILE HIS ALA ALA HIS VAL ASN ILE VAL CYS HIS          
+SEQRES   9 H  301  ARG TRP THR ARG MET ASP ILE ASP GLY LYS PRO HIS PRO          
+SEQRES  10 H  301  HIS SER PHE ILE ARG ASP SER GLU GLU LYS ARG ASN VAL          
+SEQRES  11 H  301  GLN VAL ASP VAL VAL GLU GLY LYS GLY ILE ASP ILE LYS          
+SEQRES  12 H  301  SER SER LEU SER GLY LEU THR VAL LEU LYS SER THR ASN          
+SEQRES  13 H  301  SER GLN PHE TRP GLY PHE LEU ARG ASP GLU TYR THR THR          
+SEQRES  14 H  301  LEU LYS GLU THR TRP ASP ARG ILE LEU SER THR ASP VAL          
+SEQRES  15 H  301  ASP ALA THR TRP GLN TRP LYS ASN PHE SER GLY LEU GLN          
+SEQRES  16 H  301  GLU VAL ARG SER HIS VAL PRO LYS PHE ASP ALA THR TRP          
+SEQRES  17 H  301  ALA THR ALA ARG GLU VAL THR LEU LYS THR PHE ALA GLU          
+SEQRES  18 H  301  ASP ASN SER ALA SER VAL GLN ALA THR MET TYR LYS MET          
+SEQRES  19 H  301  ALA GLU GLN ILE LEU ALA ARG GLN GLN LEU ILE GLU THR          
+SEQRES  20 H  301  VAL GLU TYR SER LEU PRO ASN LYS HIS TYR PHE GLU ILE          
+SEQRES  21 H  301  ASP LEU SER TRP HIS LYS GLY LEU GLN ASN THR GLY LYS          
+SEQRES  22 H  301  ASN ALA GLU VAL PHE ALA PRO GLN SER ASP PRO ASN GLY          
+SEQRES  23 H  301  LEU ILE LYS CYS THR VAL GLY ARG SER SER LEU LYS SER          
+SEQRES  24 H  301  LYS LEU                                                      
+SEQRES   1 A  301  SAC ALA VAL LYS ALA ALA ARG TYR GLY LYS ASP ASN VAL          
+SEQRES   2 A  301  ARG VAL TYR LYS VAL HIS LYS ASP GLU LYS THR GLY VAL          
+SEQRES   3 A  301  GLN THR VAL TYR GLU MET THR VAL CYS VAL LEU LEU GLU          
+SEQRES   4 A  301  GLY GLU ILE GLU THR SER TYR THR LYS ALA ASP ASN SER          
+SEQRES   5 A  301  VAL ILE VAL ALA THR ASP SER ILE LYS ASN THR ILE TYR          
+SEQRES   6 A  301  ILE THR ALA LYS GLN ASN PRO VAL THR PRO PRO GLU LEU          
+SEQRES   7 A  301  PHE GLY SER ILE LEU GLY THR HIS PHE ILE GLU LYS TYR          
+SEQRES   8 A  301  ASN HIS ILE HIS ALA ALA HIS VAL ASN ILE VAL CYS HIS          
+SEQRES   9 A  301  ARG TRP THR ARG MET ASP ILE ASP GLY LYS PRO HIS PRO          
+SEQRES  10 A  301  HIS SER PHE ILE ARG ASP SER GLU GLU LYS ARG ASN VAL          
+SEQRES  11 A  301  GLN VAL ASP VAL VAL GLU GLY LYS GLY ILE ASP ILE LYS          
+SEQRES  12 A  301  SER SER LEU SER GLY LEU THR VAL LEU LYS SER THR ASN          
+SEQRES  13 A  301  SER GLN PHE TRP GLY PHE LEU ARG ASP GLU TYR THR THR          
+SEQRES  14 A  301  LEU LYS GLU THR TRP ASP ARG ILE LEU SER THR ASP VAL          
+SEQRES  15 A  301  ASP ALA THR TRP GLN TRP LYS ASN PHE SER GLY LEU GLN          
+SEQRES  16 A  301  GLU VAL ARG SER HIS VAL PRO LYS PHE ASP ALA THR TRP          
+SEQRES  17 A  301  ALA THR ALA ARG GLU VAL THR LEU LYS THR PHE ALA GLU          
+SEQRES  18 A  301  ASP ASN SER ALA SER VAL GLN ALA THR MET TYR LYS MET          
+SEQRES  19 A  301  ALA GLU GLN ILE LEU ALA ARG GLN GLN LEU ILE GLU THR          
+SEQRES  20 A  301  VAL GLU TYR SER LEU PRO ASN LYS HIS TYR PHE GLU ILE          
+SEQRES  21 A  301  ASP LEU SER TRP HIS LYS GLY LEU GLN ASN THR GLY LYS          
+SEQRES  22 A  301  ASN ALA GLU VAL PHE ALA PRO GLN SER ASP PRO ASN GLY          
+SEQRES  23 A  301  LEU ILE LYS CYS THR VAL GLY ARG SER SER LEU LYS SER          
+SEQRES  24 A  301  LYS LEU                                                      
+SEQRES   1 T  301  SAC ALA VAL LYS ALA ALA ARG TYR GLY LYS ASP ASN VAL          
+SEQRES   2 T  301  ARG VAL TYR LYS VAL HIS LYS ASP GLU LYS THR GLY VAL          
+SEQRES   3 T  301  GLN THR VAL TYR GLU MET THR VAL CYS VAL LEU LEU GLU          
+SEQRES   4 T  301  GLY GLU ILE GLU THR SER TYR THR LYS ALA ASP ASN SER          
+SEQRES   5 T  301  VAL ILE VAL ALA THR ASP SER ILE LYS ASN THR ILE TYR          
+SEQRES   6 T  301  ILE THR ALA LYS GLN ASN PRO VAL THR PRO PRO GLU LEU          
+SEQRES   7 T  301  PHE GLY SER ILE LEU GLY THR HIS PHE ILE GLU LYS TYR          
+SEQRES   8 T  301  ASN HIS ILE HIS ALA ALA HIS VAL ASN ILE VAL CYS HIS          
+SEQRES   9 T  301  ARG TRP THR ARG MET ASP ILE ASP GLY LYS PRO HIS PRO          
+SEQRES  10 T  301  HIS SER PHE ILE ARG ASP SER GLU GLU LYS ARG ASN VAL          
+SEQRES  11 T  301  GLN VAL ASP VAL VAL GLU GLY LYS GLY ILE ASP ILE LYS          
+SEQRES  12 T  301  SER SER LEU SER GLY LEU THR VAL LEU LYS SER THR ASN          
+SEQRES  13 T  301  SER GLN PHE TRP GLY PHE LEU ARG ASP GLU TYR THR THR          
+SEQRES  14 T  301  LEU LYS GLU THR TRP ASP ARG ILE LEU SER THR ASP VAL          
+SEQRES  15 T  301  ASP ALA THR TRP GLN TRP LYS ASN PHE SER GLY LEU GLN          
+SEQRES  16 T  301  GLU VAL ARG SER HIS VAL PRO LYS PHE ASP ALA THR TRP          
+SEQRES  17 T  301  ALA THR ALA ARG GLU VAL THR LEU LYS THR PHE ALA GLU          
+SEQRES  18 T  301  ASP ASN SER ALA SER VAL GLN ALA THR MET TYR LYS MET          
+SEQRES  19 T  301  ALA GLU GLN ILE LEU ALA ARG GLN GLN LEU ILE GLU THR          
+SEQRES  20 T  301  VAL GLU TYR SER LEU PRO ASN LYS HIS TYR PHE GLU ILE          
+SEQRES  21 T  301  ASP LEU SER TRP HIS LYS GLY LEU GLN ASN THR GLY LYS          
+SEQRES  22 T  301  ASN ALA GLU VAL PHE ALA PRO GLN SER ASP PRO ASN GLY          
+SEQRES  23 T  301  LEU ILE LYS CYS THR VAL GLY ARG SER SER LEU LYS SER          
+SEQRES  24 T  301  LYS LEU                                                      
+SEQRES   1 N  301  SAC ALA VAL LYS ALA ALA ARG TYR GLY LYS ASP ASN VAL          
+SEQRES   2 N  301  ARG VAL TYR LYS VAL HIS LYS ASP GLU LYS THR GLY VAL          
+SEQRES   3 N  301  GLN THR VAL TYR GLU MET THR VAL CYS VAL LEU LEU GLU          
+SEQRES   4 N  301  GLY GLU ILE GLU THR SER TYR THR LYS ALA ASP ASN SER          
+SEQRES   5 N  301  VAL ILE VAL ALA THR ASP SER ILE LYS ASN THR ILE TYR          
+SEQRES   6 N  301  ILE THR ALA LYS GLN ASN PRO VAL THR PRO PRO GLU LEU          
+SEQRES   7 N  301  PHE GLY SER ILE LEU GLY THR HIS PHE ILE GLU LYS TYR          
+SEQRES   8 N  301  ASN HIS ILE HIS ALA ALA HIS VAL ASN ILE VAL CYS HIS          
+SEQRES   9 N  301  ARG TRP THR ARG MET ASP ILE ASP GLY LYS PRO HIS PRO          
+SEQRES  10 N  301  HIS SER PHE ILE ARG ASP SER GLU GLU LYS ARG ASN VAL          
+SEQRES  11 N  301  GLN VAL ASP VAL VAL GLU GLY LYS GLY ILE ASP ILE LYS          
+SEQRES  12 N  301  SER SER LEU SER GLY LEU THR VAL LEU LYS SER THR ASN          
+SEQRES  13 N  301  SER GLN PHE TRP GLY PHE LEU ARG ASP GLU TYR THR THR          
+SEQRES  14 N  301  LEU LYS GLU THR TRP ASP ARG ILE LEU SER THR ASP VAL          
+SEQRES  15 N  301  ASP ALA THR TRP GLN TRP LYS ASN PHE SER GLY LEU GLN          
+SEQRES  16 N  301  GLU VAL ARG SER HIS VAL PRO LYS PHE ASP ALA THR TRP          
+SEQRES  17 N  301  ALA THR ALA ARG GLU VAL THR LEU LYS THR PHE ALA GLU          
+SEQRES  18 N  301  ASP ASN SER ALA SER VAL GLN ALA THR MET TYR LYS MET          
+SEQRES  19 N  301  ALA GLU GLN ILE LEU ALA ARG GLN GLN LEU ILE GLU THR          
+SEQRES  20 N  301  VAL GLU TYR SER LEU PRO ASN LYS HIS TYR PHE GLU ILE          
+SEQRES  21 N  301  ASP LEU SER TRP HIS LYS GLY LEU GLN ASN THR GLY LYS          
+SEQRES  22 N  301  ASN ALA GLU VAL PHE ALA PRO GLN SER ASP PRO ASN GLY          
+SEQRES  23 N  301  LEU ILE LYS CYS THR VAL GLY ARG SER SER LEU LYS SER          
+SEQRES  24 N  301  LYS LEU                                                      
+SEQRES   1 B  301  SAC ALA VAL LYS ALA ALA ARG TYR GLY LYS ASP ASN VAL          
+SEQRES   2 B  301  ARG VAL TYR LYS VAL HIS LYS ASP GLU LYS THR GLY VAL          
+SEQRES   3 B  301  GLN THR VAL TYR GLU MET THR VAL CYS VAL LEU LEU GLU          
+SEQRES   4 B  301  GLY GLU ILE GLU THR SER TYR THR LYS ALA ASP ASN SER          
+SEQRES   5 B  301  VAL ILE VAL ALA THR ASP SER ILE LYS ASN THR ILE TYR          
+SEQRES   6 B  301  ILE THR ALA LYS GLN ASN PRO VAL THR PRO PRO GLU LEU          
+SEQRES   7 B  301  PHE GLY SER ILE LEU GLY THR HIS PHE ILE GLU LYS TYR          
+SEQRES   8 B  301  ASN HIS ILE HIS ALA ALA HIS VAL ASN ILE VAL CYS HIS          
+SEQRES   9 B  301  ARG TRP THR ARG MET ASP ILE ASP GLY LYS PRO HIS PRO          
+SEQRES  10 B  301  HIS SER PHE ILE ARG ASP SER GLU GLU LYS ARG ASN VAL          
+SEQRES  11 B  301  GLN VAL ASP VAL VAL GLU GLY LYS GLY ILE ASP ILE LYS          
+SEQRES  12 B  301  SER SER LEU SER GLY LEU THR VAL LEU LYS SER THR ASN          
+SEQRES  13 B  301  SER GLN PHE TRP GLY PHE LEU ARG ASP GLU TYR THR THR          
+SEQRES  14 B  301  LEU LYS GLU THR TRP ASP ARG ILE LEU SER THR ASP VAL          
+SEQRES  15 B  301  ASP ALA THR TRP GLN TRP LYS ASN PHE SER GLY LEU GLN          
+SEQRES  16 B  301  GLU VAL ARG SER HIS VAL PRO LYS PHE ASP ALA THR TRP          
+SEQRES  17 B  301  ALA THR ALA ARG GLU VAL THR LEU LYS THR PHE ALA GLU          
+SEQRES  18 B  301  ASP ASN SER ALA SER VAL GLN ALA THR MET TYR LYS MET          
+SEQRES  19 B  301  ALA GLU GLN ILE LEU ALA ARG GLN GLN LEU ILE GLU THR          
+SEQRES  20 B  301  VAL GLU TYR SER LEU PRO ASN LYS HIS TYR PHE GLU ILE          
+SEQRES  21 B  301  ASP LEU SER TRP HIS LYS GLY LEU GLN ASN THR GLY LYS          
+SEQRES  22 B  301  ASN ALA GLU VAL PHE ALA PRO GLN SER ASP PRO ASN GLY          
+SEQRES  23 B  301  LEU ILE LYS CYS THR VAL GLY ARG SER SER LEU LYS SER          
+SEQRES  24 B  301  LYS LEU                                                      
+HETNAM     SAC N-ACETYL-SERINE                                                  
+HETNAM     XDS (5S)-5-(DIOXIDANYL)-9-METHYL-7H-PURINE-2,6,8-TRIONE              
+HETNAM     MPD (4S)-2-METHYL-2,4-PENTANEDIOL                                    
+HETNAM     OXY OXYGEN MOLECULE                                                  
+HETNAM     MUA 9-METHYL URIC ACID                                               
+FORMUL   1  SAC    C5 H9 N O4                                                   
+FORMUL   2  XDS    C6 H6 N4 O5                                                  
+FORMUL   3  MPD    C6 H14 O2                                                    
+FORMUL   4  OXY    O2                                                           
+FORMUL   5  MUA    C6 H6 N4 O3                                                  
+FORMUL   6  HOH   *617(H2 O)                                                    
+HELIX    1   1 ILE A   42  LYS A   48  1                                   7    
+HELIX    2   2 ASP A   50  ILE A   54  5                                   5    
+HELIX    3   3 ALA A   56  ASN A   71  1                                  16    
+HELIX    4   4 PRO A   75  TYR A   91  1                                  17    
+HELIX    5   5 GLY A  193  HIS A  200  1                                   8    
+HELIX    6   6 HIS A  200  ASP A  222  1                                  23    
+HELIX    7   7 SER A  226  GLN A  242  1                                  17    
+HELIX    8   8 THR A  271  ALA A  275  5                                   5    
+SHEET    1  AA 8 TYR A   8  LYS A  20  0                                        
+SHEET    2  AA 8 GLN A  27  GLY A  40 -1  O  THR A  28   N  HIS A  19           
+SHEET    3  AA 8 ILE A  94  HIS A 104 -1  N  HIS A  95   O  GLU A  39           
+SHEET    4  AA 8 LYS A 127  VAL A 135 -1  O  ARG A 128   N  CYS A 103           
+SHEET    5  AA 8 ILE A 140  LYS A 153 -1  O  ASP A 141   N  ASP A 133           
+SHEET    6  AA 8 LEU A 178  TRP A 188 -1  O  LEU A 178   N  LYS A 153           
+SHEET    7  AA 8 ILE A 245  ASN A 254 -1  N  GLU A 246   O  GLN A 187           
+SHEET    8  AA 8 GLY A 286  GLY A 293 -1  O  GLY A 286   N  ASN A 254           
+SHEET    1  AB 2 THR A 107  ILE A 111  0                                        
+SHEET    2  AB 2 LYS A 114  ILE A 121 -1  O  LYS A 114   N  ILE A 111           
+SHEET    1  AC 2 TYR A 257  GLU A 259  0                                        
+SHEET    2  AC 2 PHE A 278  PRO A 280 -1  O  ALA A 279   N  PHE A 258           
+LINK         C  ASAC A   1                 N  AALA A   2     1555   1555  1.33  
+LINK         C  BSAC A   1                 N  BALA A   2     1555   1555  1.32  
+LINK         O1  XDS A1302                 O2  OXY A1304     1555   1555  1.22  
+CISPEP   1 THR A   74    PRO A   75          0       -16.54                     
+CISPEP   2 THR A   74    PRO A   75          0       -15.33                     
+CISPEP   3 ASP A  283    PRO A  284          0       -11.06                     
+CISPEP   4 ASP A  283    PRO A  284          0       -12.52                     
+SITE     1 AC1  7 GLN A 158  TRP A 174  SER A 192  HOH A2393                    
+SITE     2 AC1  7 HOH A2468  HOH A2515  HOH A2617                               
+SITE     1 AC2 13 ILE A  54  ALA A  56  THR A  57  ASP A  58                    
+SITE     2 AC2 13 PHE A 159  LEU A 170  ARG A 176  SER A 226                    
+SITE     3 AC2 13 VAL A 227  GLN A 228  ASN A 254  XDS A1302                    
+SITE     4 AC2 13 OXY A1304                                                     
+SITE     1 AC3 15 ILE A  54  ALA A  56  THR A  57  ASP A  58                    
+SITE     2 AC3 15 PHE A 159  LEU A 170  ARG A 176  SER A 226                    
+SITE     3 AC3 15 VAL A 227  GLN A 228  ASN A 254  HIS A 256                    
+SITE     4 AC3 15 GLY A 286  ILE A 288  MUA A1305                               
+CRYST1   79.498   95.157  104.415  90.00  90.00  90.00 I 2 2 2       8          
+ORIGX1      1.000000  0.000000  0.000000        0.00000                         
+ORIGX2      0.000000  1.000000  0.000000        0.00000                         
+ORIGX3      0.000000  0.000000  1.000000        0.00000                         
+SCALE1      0.012579  0.000000  0.000000        0.00000                         
+SCALE2      0.000000  0.010509  0.000000        0.00000                         
+SCALE3      0.000000  0.000000  0.009577        0.00000                         
+CRYST1   79.498   95.157  104.415  90.00  90.00  90.00 I 2 2 2       1          
+MODEL        1                                                                  
+ENDMDL                                                                          
+CONECT    2    4   16                                                           
+CONECT    4    2    6   12                                                      
+CONECT    5    3    7   19                                                      
+CONECT    6    4    8   20                                                      
+CONECT    7    5                                                                
+CONECT    8    6                                                                
+CONECT    9   15                                                                
+CONECT   10   16                                                                
+CONECT   11    3   13                                                           
+CONECT   12    4   14                                                           
+CONECT   13   11                                                                
+CONECT   14   12                                                                
+CONECT   16    2   10   18                                                      
+CONECT   17   15                                                                
+CONECT   18   16                                                                
+CONECT   19    5                                                                
+CONECT   20    6                                                                
+CONECT 2620 2621 2623 2649 2654                                                 
+CONECT 2620 2656 2657 2634                                                      
+CONECT 2621 2620 2656 2657                                                      
+CONECT 2622 2654 2655 2623                                                      
+CONECT 2623 2620 2622 2653 2654                                                 
+CONECT 2623 2655 2656 2624                                                      
+CONECT 2624 2623 2650 2653 2654                                                 
+CONECT 2624 2626                                                                
+CONECT 2625 2628 2644 2626                                                      
+CONECT 2626 2624 2625 2649 2650                                                 
+CONECT 2626 2651 2653 2629 2634                                                 
+CONECT 2627 2629 2645 2646 2651                                                 
+CONECT 2627 2632                                                                
+CONECT 2628 2625 2643 2644                                                      
+CONECT 2629 2627 2626 2631 2645                                                 
+CONECT 2629 2650 2651 2652                                                      
+CONECT 2630 2634 2646 2648 2649                                                 
+CONECT 2630 2632                                                                
+CONECT 2631 2629 2651 2652                                                      
+CONECT 2632 2627 2630 2645 2646                                                 
+CONECT 2632 2647 2648 2633                                                      
+CONECT 2633 2632 2646 2647                                                      
+CONECT 2634 2630 2620 2626 2648                                                 
+CONECT 2634 2649 2650 2656                                                      
+CONECT 2635 2637                                                                
+CONECT 2636 2637                                                                
+CONECT 2637 2636 2635 2638 2639                                                 
+CONECT 2638 2637                                                                
+CONECT 2639 2637 2640                                                           
+CONECT 2640 2639 2641 2642                                                      
+CONECT 2641 2640                                                                
+CONECT 2642 2640                                                                
+CONECT 2643 2628 2644                                                           
+CONECT 2644 2625 2628 2643                                                      
+CONECT 2645 2627 2629 2632 2646                                                 
+CONECT 2645 2651                                                                
+CONECT 2646 2627 2630 2632 2633                                                 
+CONECT 2646 2645 2647 2648                                                      
+CONECT 2647 2632 2633 2646                                                      
+CONECT 2648 2630 2632 2634 2646                                                 
+CONECT 2648 2649                                                                
+CONECT 2649 2620 2626 2630 2634                                                 
+CONECT 2649 2648 2650 2656                                                      
+CONECT 2650 2624 2626 2629 2634                                                 
+CONECT 2650 2649 2651 2653                                                      
+CONECT 2651 2626 2627 2629 2631                                                 
+CONECT 2651 2645 2650 2652                                                      
+CONECT 2652 2629 2631 2651                                                      
+CONECT 2653 2623 2624 2626 2650                                                 
+CONECT 2653 2654                                                                
+CONECT 2654 2620 2622 2623 2624                                                 
+CONECT 2654 2653 2655 2656                                                      
+CONECT 2655 2622 2623 2654                                                      
+CONECT 2656 2620 2621 2623 2634                                                 
+CONECT 2656 2649 2654 2657                                                      
+CONECT 2657 2620 2621 2656                                                      
+CONECT 3282 3284 3296                                                           
+CONECT 3283 3285 3297                                                           
+CONECT 3284 3282 3286 3292                                                      
+CONECT 3285 3283 3287 3293                                                      
+CONECT 3286 3284 3288 3300                                                      
+CONECT 3287 3285 3289 3301                                                      
+CONECT 3288 3286                                                                
+CONECT 3289 3287                                                                
+CONECT 3290 3296                                                                
+CONECT 3291 3297                                                                
+CONECT 3292 3284 3294                                                           
+CONECT 3293 3285 3295                                                           
+CONECT 3294 3292                                                                
+CONECT 3295 3293                                                                
+CONECT 3296 3282 3290 3298                                                      
+CONECT 3297 3283 3291 3299                                                      
+CONECT 3298 3296                                                                
+CONECT 3299 3297                                                                
+CONECT 3300 3286                                                                
+CONECT 3301 3287                                                                
+CONECT 5901 5902 5904 5930 5935                                                 
+CONECT 5901 5937 5938 5915                                                      
+CONECT 5902 5901 5937 5938                                                      
+CONECT 5903 5935 5936 5904                                                      
+CONECT 5904 5901 5903 5934 5935                                                 
+CONECT 5904 5936 5937 5905                                                      
+CONECT 5905 5904 5931 5934 5935                                                 
+CONECT 5905 5907                                                                
+CONECT 5906 5909 5925 5907                                                      
+CONECT 5907 5905 5906 5930 5931                                                 
+CONECT 5907 5932 5934 5910 5915                                                 
+CONECT 5908 5910 5926 5927 5932                                                 
+CONECT 5908 5913                                                                
+CONECT 5909 5906 5924 5925                                                      
+CONECT 5910 5908 5907 5912 5926                                                 
+CONECT 5910 5931 5932 5933                                                      
+CONECT 5911 5915 5927 5929 5930                                                 
+CONECT 5911 5913                                                                
+CONECT 5912 5910 5932 5933                                                      
+CONECT 5913 5908 5911 5926 5927                                                 
+CONECT 5913 5928 5929 5914                                                      
+CONECT 5914 5913 5927 5928                                                      
+CONECT 5915 5911 5901 5907 5929                                                 
+CONECT 5915 5930 5931 5937                                                      
+CONECT 5916 5918                                                                
+CONECT 5917 5918                                                                
+CONECT 5918 5917 5916 5919 5920                                                 
+CONECT 5919 5918                                                                
+CONECT 5920 5918 5921                                                           
+CONECT 5921 5920 5922 5923                                                      
+CONECT 5922 5921                                                                
+CONECT 5923 5921                                                                
+CONECT 5924 5909 5925                                                           
+CONECT 5925 5906 5909 5924                                                      
+CONECT 5926 5908 5910 5913 5927                                                 
+CONECT 5926 5932                                                                
+CONECT 5927 5908 5911 5913 5914                                                 
+CONECT 5927 5926 5928 5929                                                      
+CONECT 5928 5913 5914 5927                                                      
+CONECT 5929 5911 5913 5915 5927                                                 
+CONECT 5929 5930                                                                
+CONECT 5930 5901 5907 5911 5915                                                 
+CONECT 5930 5929 5931 5937                                                      
+CONECT 5931 5905 5907 5910 5915                                                 
+CONECT 5931 5930 5932 5934                                                      
+CONECT 5932 5907 5908 5910 5912                                                 
+CONECT 5932 5926 5931 5933                                                      
+CONECT 5933 5910 5912 5932                                                      
+CONECT 5934 5904 5905 5907 5931                                                 
+CONECT 5934 5935                                                                
+CONECT 5935 5901 5903 5904 5905                                                 
+CONECT 5935 5934 5936 5937                                                      
+CONECT 5936 5903 5904 5935                                                      
+CONECT 5937 5901 5902 5904 5915                                                 
+CONECT 5937 5930 5935 5938                                                      
+CONECT 5938 5901 5902 5937                                                      
+CONECT 6563 6565 6577                                                           
+CONECT 6564 6566 6578                                                           
+CONECT 6565 6563 6567 6573                                                      
+CONECT 6566 6564 6568 6574                                                      
+CONECT 6567 6565 6569 6581                                                      
+CONECT 6568 6566 6570 6582                                                      
+CONECT 6569 6567                                                                
+CONECT 6570 6568                                                                
+CONECT 6571 6577                                                                
+CONECT 6572 6578                                                                
+CONECT 6573 6565 6575                                                           
+CONECT 6574 6566 6576                                                           
+CONECT 6575 6573                                                                
+CONECT 6576 6574                                                                
+CONECT 6577 6563 6571 6579                                                      
+CONECT 6578 6564 6572 6580                                                      
+CONECT 6579 6577                                                                
+CONECT 6580 6578                                                                
+CONECT 6581 6567                                                                
+CONECT 6582 6568                                                                
+CONECT 9182 9183 9185 9211 9216                                                 
+CONECT 9182 9218 9219 9196                                                      
+CONECT 9183 9182 9218 9219                                                      
+CONECT 9184 9216 9217 9185                                                      
+CONECT 9185 9182 9184 9215 9216                                                 
+CONECT 9185 9217 9218 9186                                                      
+CONECT 9186 9185 9212 9215 9216                                                 
+CONECT 9186 9188                                                                
+CONECT 9187 9190 9206 9188                                                      
+CONECT 9188 9186 9187 9211 9212                                                 
+CONECT 9188 9213 9215 9191 9196                                                 
+CONECT 9189 9191 9207 9208 9213                                                 
+CONECT 9189 9194                                                                
+CONECT 9190 9187 9205 9206                                                      
+CONECT 9191 9189 9188 9193 9207                                                 
+CONECT 9191 9212 9213 9214                                                      
+CONECT 9192 9196 9208 9210 9211                                                 
+CONECT 9192 9194                                                                
+CONECT 9193 9191 9213 9214                                                      
+CONECT 9194 9189 9192 9207 9208                                                 
+CONECT 9194 9209 9210 9195                                                      
+CONECT 9195 9194 9208 9209                                                      
+CONECT 9196 9192 9182 9188 9210                                                 
+CONECT 9196 9211 9212 9218                                                      
+CONECT 9197 9199                                                                
+CONECT 9198 9199                                                                
+CONECT 9199 9198 9197 9200 9201                                                 
+CONECT 9200 9199                                                                
+CONECT 9201 9199 9202                                                           
+CONECT 9202 9201 9203 9204                                                      
+CONECT 9203 9202                                                                
+CONECT 9204 9202                                                                
+CONECT 9205 9190 9206                                                           
+CONECT 9206 9187 9190 9205                                                      
+CONECT 9207 9189 9191 9194 9208                                                 
+CONECT 9207 9213                                                                
+CONECT 9208 9189 9192 9194 9195                                                 
+CONECT 9208 9207 9209 9210                                                      
+CONECT 9209 9194 9195 9208                                                      
+CONECT 9210 9192 9194 9196 9208                                                 
+CONECT 9210 9211                                                                
+CONECT 9211 9182 9188 9192 9196                                                 
+CONECT 9211 9210 9212 9218                                                      
+CONECT 9212 9186 9188 9191 9196                                                 
+CONECT 9212 9211 9213 9215                                                      
+CONECT 9213 9188 9189 9191 9193                                                 
+CONECT 9213 9207 9212 9214                                                      
+CONECT 9214 9191 9193 9213                                                      
+CONECT 9215 9185 9186 9188 9212                                                 
+CONECT 9215 9216                                                                
+CONECT 9216 9182 9184 9185 9186                                                 
+CONECT 9216 9215 9217 9218                                                      
+CONECT 9217 9184 9185 9216                                                      
+CONECT 9218 9182 9183 9185 9196                                                 
+CONECT 9218 9211 9216 9219                                                      
+CONECT 9219 9182 9183 9218                                                      
+CONECT 9836 9838 9850                                                           
+CONECT 9837 9839 9851                                                           
+CONECT 9838 9836 9840 9846                                                      
+CONECT 9839 9837 9841 9847                                                      
+CONECT 9840 9838 9842 9854                                                      
+CONECT 9841 9839 9843 9855                                                      
+CONECT 9842 9840                                                                
+CONECT 9843 9841                                                                
+CONECT 9844 9850                                                                
+CONECT 9845 9851                                                                
+CONECT 9846 9838 9848                                                           
+CONECT 9847 9839 9849                                                           
+CONECT 9848 9846                                                                
+CONECT 9849 9847                                                                
+CONECT 9850 9836 9844 9852                                                      
+CONECT 9851 9837 9845 9853                                                      
+CONECT 9852 9850                                                                
+CONECT 9853 9851                                                                
+CONECT 9854 9840                                                                
+CONECT 9855 9841                                                                
+CONECT1245512456124581248412489                                                 
+CONECT12455124911249212469                                                      
+CONECT12456124551249112492                                                      
+CONECT12457124891249012458                                                      
+CONECT1245812455124571248812489                                                 
+CONECT12458124901249112459                                                      
+CONECT1245912458124851248812489                                                 
+CONECT1245912461                                                                
+CONECT12460124631247912461                                                      
+CONECT1246112459124601248412485                                                 
+CONECT1246112486124881246412469                                                 
+CONECT1246212464124801248112486                                                 
+CONECT1246212467                                                                
+CONECT12463124601247812479                                                      
+CONECT1246412462124611246612480                                                 
+CONECT12464124851248612487                                                      
+CONECT1246512469124811248312484                                                 
+CONECT1246512467                                                                
+CONECT12466124641248612487                                                      
+CONECT1246712462124651248012481                                                 
+CONECT12467124821248312468                                                      
+CONECT12468124671248112482                                                      
+CONECT1246912465124551246112483                                                 
+CONECT12469124841248512491                                                      
+CONECT1247012472                                                                
+CONECT1247112472                                                                
+CONECT1247212471124701247312474                                                 
+CONECT1247312472                                                                
+CONECT124741247212475                                                           
+CONECT12475124741247612477                                                      
+CONECT1247612475                                                                
+CONECT1247712475                                                                
+CONECT124781246312479                                                           
+CONECT12479124601246312478                                                      
+CONECT1248012462124641246712481                                                 
+CONECT1248012486                                                                
+CONECT1248112462124651246712468                                                 
+CONECT12481124801248212483                                                      
+CONECT12482124671246812481                                                      
+CONECT1248312465124671246912481                                                 
+CONECT1248312484                                                                
+CONECT1248412455124611246512469                                                 
+CONECT12484124831248512491                                                      
+CONECT1248512459124611246412469                                                 
+CONECT12485124841248612488                                                      
+CONECT1248612461124621246412466                                                 
+CONECT12486124801248512487                                                      
+CONECT12487124641246612486                                                      
+CONECT1248812458124591246112485                                                 
+CONECT1248812489                                                                
+CONECT1248912455124571245812459                                                 
+CONECT12489124881249012491                                                      
+CONECT12490124571245812489                                                      
+CONECT1249112455124561245812469                                                 
+CONECT12491124841248912492                                                      
+CONECT12492124551245612491                                                      
+END                                                                             

@@ -1,4 +1,4 @@
 DB_NAME=yuel_pocket
 DB_USER=juw1179
-DB_HOST=submit03
+DB_HOST=172.24.9.136
 DB_PORT=5433 

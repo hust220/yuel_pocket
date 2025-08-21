@@ -112,8 +112,6 @@ class YuelPocket(pl.LightningModule):
         node_mask = data['node_mask']
         edge_mask = data['edge_mask']
 
-        # feat_mask = torch.tensor(molecule_feat_mask(), device=x.device)
-
         pocket_pred, _ = self.gnn.forward(
             h=h,
             edge_index=edge_index,

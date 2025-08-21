@@ -1,0 +1,201 @@
+HEADER    OXIDOREDUCTASE                          03-OCT-96   XXXX              
+TITLE     STRUCTURE OF DIHYDROFOLATE REDUCTASE                                  
+COMPND    DIHYDROFOLATE REDUCTASE, FOLIC ACID                                   
+KEYWDS    OXIDOREDUCTASE, NADP, TRIMETHOPRIM RESISTANCE METHOTREXATE            
+KEYWDS   2 RESISTANCE, ONE-CARBON METABOLISM, PLASMID                           
+EXPDTA    X-RAY DIFFRACTION                                                     
+AUTHOR    N.NARAYANA, D.A.MATTHEWS, E.E.HOWELL, N.-H.XUONG                      
+JRNL        AUTH   N.NARAYANA, D.A.MATTHEWS, E.E.HOWELL, X.NGUYEN-HUU           
+JRNL        TITL   A PLASMID-ENCODED DIHYDROFOLATE REDUCTASE FROM               
+JRNL        TITL 2 TRIMETHOPRIM-RESISTANT BACTERIA HAS A NOVEL                  
+JRNL        TITL 3 D2-SYMMETRIC ACTIVE SITE.                                    
+JRNL        REF    NAT.STRUCT.BIOL.              V.   2  1018 1995              
+JRNL        REFN   ASTM NSBIEW  US ISSN 1072-8368                               
+JRNL        PMID   7583655                                                      
+JRNL        DOI    10.1038/NSB1195-1018                                         
+REMARK   1                                                                      
+REMARK   1 REFERENCE 1                                                          
+REMARK   1  AUTH   J.C.HOLLAND, C.E.LINN, E.DIGIAMMARINO, R.NICHOLS,            
+REMARK   1  AUTH 2 E.E.HOWELL                                                   
+REMARK   1  TITL   DOES R67 DIHYDROFOLATE REDUCTASE POSSESS A PROTON            
+REMARK   1  TITL 2 DONOR?                                                       
+REMARK   1  REF    ADV.EXP.MED.BIOL.             V. 338   493 1993              
+REMARK   1  REFN   ASTM AEMBAP  US ISSN 0065-2598                               
+REMARK   1 REFERENCE 2                                                          
+REMARK   1  AUTH   L.J.REECE, R.NICHOLS, R.C.OGDEN, E.E.HOWELL                  
+REMARK   1  TITL   CONSTRUCTION OF A SYNTHETIC GENE FOR AN                      
+REMARK   1  TITL 2 R-PLASMID-ENCODED DIHYDROFOLATE REDUCTASE AND                
+REMARK   1  TITL 3 STUDIES ON THE ROLE OF THE N-TERMINUS IN THE                 
+REMARK   1  TITL 4 PROTEIN                                                      
+REMARK   1  REF    BIOCHEMISTRY                  V.  30 10895 1991              
+REMARK   1  REFN   ASTM BICHAW  US ISSN 0006-2960                               
+REMARK   1 REFERENCE 3                                                          
+REMARK   1  AUTH   D.A.MATTHEWS, S.L.SMITH, D.P.BACCANARI,                      
+REMARK   1  AUTH 2 J.J.BURCHALL, S.J.OATLEY, J.KRAUT                            
+REMARK   1  TITL   CRYSTAL STRUCTURE OF A NOVEL                                 
+REMARK   1  TITL 2 TRIMETHOPRIM-RESISTANT DIHYDROFOLATE REDUCTASE               
+REMARK   1  TITL 3 SPECIFIED IN ESCHERICHIA COLI BY R-PLASMID R67               
+REMARK   1  REF    BIOCHEMISTRY                  V.  25  4194 1986              
+REMARK   1  REFN   ASTM BICHAW  US ISSN 0006-2960                               
+REMARK   1 REFERENCE 4                                                          
+REMARK   1  AUTH   D.STONE, S.L.SMITH                                           
+REMARK   1  TITL   THE AMINO ACID SEQUENCE OF THE                               
+REMARK   1  TITL 2 TRIMETHOPRIM-RESISTANT DIHYDROFOLATE REDUCTASE               
+REMARK   1  TITL 3 SPECIFIED IN ESCHERICHIA COLI BY R-PLASMID R67               
+REMARK   1  REF    J.BIOL.CHEM.                  V. 254 10857 1979              
+REMARK   1  REFN   ASTM JBCHA3  US ISSN 0021-9258                               
+REMARK   1 REFERENCE 5                                                          
+REMARK   1  AUTH   M.P.FLEMING, N.DATTA, R.N.GRUNEBERG                          
+REMARK   1  TITL   TRIMETHOPRIM RESISTANCE DETERMINED BY R FACTORS              
+REMARK   1  REF    BR.MED.J.                     V.   1   726 1972              
+REMARK   1  REFN   ASTM BMJOAE  UK ISSN 0007-1447                               
+SEQRES   1 A   62  VAL PHE PRO SER ASN ALA THR PHE GLY MET GLY ASP ARG          
+SEQRES   2 A   62  VAL ARG LYS LYS SER GLY ALA ALA TRP GLN GLY GLN ILE          
+SEQRES   3 A   62  VAL GLY TRP TYR CYS THR ASN LEU THR PRO GLU GLY TYR          
+SEQRES   4 A   62  ALA VAL GLU SER GLU ALA HIS PRO GLY SER VAL GLN ILE          
+SEQRES   5 A   62  TYR PRO VAL ALA ALA LEU GLU ARG ILE ASN                      
+SEQRES   1 C   60  PRO SER ASN ALA THR PHE GLY MET GLY ASP ARG VAL ARG          
+SEQRES   2 C   60  LYS LYS SER GLY ALA ALA TRP GLN GLY GLN ILE VAL GLY          
+SEQRES   3 C   60  TRP TYR CYS THR ASN LEU THR PRO GLU GLY TYR ALA VAL          
+SEQRES   4 C   60  GLU SER GLU ALA HIS PRO GLY SER VAL GLN ILE TYR PRO          
+SEQRES   5 C   60  VAL ALA ALA LEU GLU ARG ILE ASN                              
+SEQRES   1 I   60  PRO SER ASN ALA THR PHE GLY MET GLY ASP ARG VAL ARG          
+SEQRES   2 I   60  LYS LYS SER GLY ALA ALA TRP GLN GLY GLN ILE VAL GLY          
+SEQRES   3 I   60  TRP TYR CYS THR ASN LEU THR PRO GLU GLY TYR ALA VAL          
+SEQRES   4 I   60  GLU SER GLU ALA HIS PRO GLY SER VAL GLN ILE TYR PRO          
+SEQRES   5 I   60  VAL ALA ALA LEU GLU ARG ILE ASN                              
+SEQRES   1 G   60  PRO SER ASN ALA THR PHE GLY MET GLY ASP ARG VAL ARG          
+SEQRES   2 G   60  LYS LYS SER GLY ALA ALA TRP GLN GLY GLN ILE VAL GLY          
+SEQRES   3 G   60  TRP TYR CYS THR ASN LEU THR PRO GLU GLY TYR ALA VAL          
+SEQRES   4 G   60  GLU SER GLU ALA HIS PRO GLY SER VAL GLN ILE TYR PRO          
+SEQRES   5 G   60  VAL ALA ALA LEU GLU ARG ILE ASN                              
+SEQRES   1 E   60  PRO SER ASN ALA THR PHE GLY MET GLY ASP ARG VAL ARG          
+SEQRES   2 E   60  LYS LYS SER GLY ALA ALA TRP GLN GLY GLN ILE VAL GLY          
+SEQRES   3 E   60  TRP TYR CYS THR ASN LEU THR PRO GLU GLY TYR ALA VAL          
+SEQRES   4 E   60  GLU SER GLU ALA HIS PRO GLY SER VAL GLN ILE TYR PRO          
+SEQRES   5 E   60  VAL ALA ALA LEU GLU ARG ILE ASN                              
+HETNAM     FOL FOLIC ACID                                                       
+FORMUL   2  FOL    C19 H19 N7 O6                                                
+FORMUL   3  HOH   *44(H2 O)                                                     
+HELIX    1   1 VAL A   71  ALA A   73  5                                   3    
+SHEET    1   A 5 LEU A  74  ARG A  76  0                                        
+SHEET    2   A 5 ARG A  29  LYS A  32 -1  N  ARG A  31   O  GLU A  75           
+SHEET    3   A 5 GLN A  39  TYR A  46 -1  N  GLY A  40   O  VAL A  30           
+SHEET    4   A 5 GLY A  54  SER A  59 -1  N  GLU A  58   O  GLN A  41           
+SHEET    5   A 5 VAL A  66  PRO A  70 -1  N  TYR A  69   O  TYR A  55           
+CISPEP   1 ILE A   77    ASN A   78          1         3.13                     
+SITE     1 AC1  5 GLN A  67  GLN A  67  ILE A  68  TYR A  69                    
+SITE     2 AC1  5 HOH A 121                                                     
+CRYST1   68.750   68.750   52.590  90.00  90.00  90.00 I 41 2 2     16          
+ORIGX1      1.000000  0.000000  0.000000        0.00000                         
+ORIGX2      0.000000  1.000000  0.000000        0.00000                         
+ORIGX3      0.000000  0.000000  1.000000        0.00000                         
+SCALE1      0.014545  0.000000  0.000000        0.00000                         
+SCALE2      0.000000  0.014545  0.000000        0.00000                         
+SCALE3      0.000000  0.000000  0.019015        0.00000                         
+CRYST1   68.750   68.750   52.590  90.00  90.00  90.00 I 41 2 2      1          
+MODEL        1                                                                  
+ENDMDL                                                                          
+CONECT    2    6                                                                
+CONECT    3    5   21                                                           
+CONECT    4    6   22                                                           
+CONECT    6    4    2    8                                                      
+CONECT    7    5    9                                                           
+CONECT    8    6   10                                                           
+CONECT    9    7   11   13                                                      
+CONECT   10    8   12   14                                                      
+CONECT   11    9   15   21                                                      
+CONECT   12   10   16   22                                                      
+CONECT   13    9                                                                
+CONECT   14   10                                                                
+CONECT   15   11   17                                                           
+CONECT   16   12   18                                                           
+CONECT   17   15   19   25                                                      
+CONECT   18   16   20   26                                                      
+CONECT   19   17   23                                                           
+CONECT   20   18   24                                                           
+CONECT   21    3   11   23                                                      
+CONECT   22    4   12   24                                                      
+CONECT   23   19   21                                                           
+CONECT   24   20   22                                                           
+CONECT   25   17                                                                
+CONECT   26   18                                                                
+CONECT  527  531                                                                
+CONECT  528  532                                                                
+CONECT  529  531  547                                                           
+CONECT  530  532  548                                                           
+CONECT  531  529  527  533                                                      
+CONECT  532  530  528  534                                                      
+CONECT  533  531  535                                                           
+CONECT  534  532  536                                                           
+CONECT  535  533  537  539                                                      
+CONECT  536  534  538  540                                                      
+CONECT  537  535  541  547                                                      
+CONECT  538  536  542  548                                                      
+CONECT  539  535                                                                
+CONECT  540  536                                                                
+CONECT  541  537  543                                                           
+CONECT  542  538  544                                                           
+CONECT  543  541  545  551                                                      
+CONECT  544  542  546  552                                                      
+CONECT  545  543  549                                                           
+CONECT  546  544  550                                                           
+CONECT  547  529  537  549                                                      
+CONECT  548  530  538  550                                                      
+CONECT  549  545  547                                                           
+CONECT  550  546  548                                                           
+CONECT  551  543                                                                
+CONECT  552  544                                                                
+CONECT 1053 1057                                                                
+CONECT 1054 1058                                                                
+CONECT 1055 1057 1073                                                           
+CONECT 1056 1058 1074                                                           
+CONECT 1057 1055 1053 1059                                                      
+CONECT 1058 1056 1054 1060                                                      
+CONECT 1059 1057 1061                                                           
+CONECT 1060 1058 1062                                                           
+CONECT 1061 1059 1063 1065                                                      
+CONECT 1062 1060 1064 1066                                                      
+CONECT 1063 1061 1067 1073                                                      
+CONECT 1064 1062 1068 1074                                                      
+CONECT 1065 1061                                                                
+CONECT 1066 1062                                                                
+CONECT 1067 1063 1069                                                           
+CONECT 1068 1064 1070                                                           
+CONECT 1069 1067 1071 1077                                                      
+CONECT 1070 1068 1072 1078                                                      
+CONECT 1071 1069 1075                                                           
+CONECT 1072 1070 1076                                                           
+CONECT 1073 1055 1063 1075                                                      
+CONECT 1074 1056 1064 1076                                                      
+CONECT 1075 1071 1073                                                           
+CONECT 1076 1072 1074                                                           
+CONECT 1077 1069                                                                
+CONECT 1078 1070                                                                
+CONECT 1579 1583                                                                
+CONECT 1580 1584                                                                
+CONECT 1581 1583 1599                                                           
+CONECT 1582 1584 1600                                                           
+CONECT 1583 1581 1579 1585                                                      
+CONECT 1584 1582 1580 1586                                                      
+CONECT 1585 1583 1587                                                           
+CONECT 1586 1584 1588                                                           
+CONECT 1587 1585 1589 1591                                                      
+CONECT 1588 1586 1590 1592                                                      
+CONECT 1589 1587 1593 1599                                                      
+CONECT 1590 1588 1594 1600                                                      
+CONECT 1591 1587                                                                
+CONECT 1592 1588                                                                
+CONECT 1593 1589 1595                                                           
+CONECT 1594 1590 1596                                                           
+CONECT 1595 1593 1597 1603                                                      
+CONECT 1596 1594 1598 1604                                                      
+CONECT 1597 1595 1601                                                           
+CONECT 1598 1596 1602                                                           
+CONECT 1599 1581 1589 1601                                                      
+CONECT 1600 1582 1590 1602                                                      
+CONECT 1601 1597 1599                                                           
+CONECT 1602 1598 1600                                                           
+CONECT 1603 1595                                                                
+CONECT 1604 1596                                                                
+END                                                                             

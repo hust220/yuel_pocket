@@ -41,57 +41,64 @@ def read_sdf(sdf_path):
 
 # one hot for atoms
 def atom_one_hot(atom):
-    # n1 = const.N_RESIDUE_TYPES
-    n2 = const.N_ATOM_TYPES
-    one_hot = np.zeros(n2)
+    n = const.N_ATOM_TYPES
+    one_hot = np.zeros(n)
+    if atom not in const.ATOM2IDX:
+        atom = 'X'
     one_hot[const.ATOM2IDX[atom]] = 1
     return one_hot
 
 # one hot for amino acids
 def aa_one_hot(residue):
-    n1 = const.N_RESIDUE_TYPES
-    n2 = const.N_ATOM_TYPES
-    one_hot = np.zeros(n1 + n2)
+    n = const.N_RESIDUE_TYPES
+    one_hot = np.zeros(n)
+    if residue not in const.RESIDUE2IDX:
+        residue = 'UNK'
     one_hot[const.RESIDUE2IDX[residue]] = 1
     return one_hot
-
-def molecule_feat_mask():
-    n1 = const.N_RESIDUE_TYPES
-    n2 = const.N_ATOM_TYPES
-    mask = np.zeros(n1 + n2)
-    mask[n1:] = 1
-    return mask
 
 def bond_one_hot(bond):
     one_hot = [0 for i in range(const.N_RDBOND_TYPES)]
     
     # Set the appropriate index to 1
     bond_type = bond.GetBondType()
-    if bond_type in const.RDBOND2IDX:
-        one_hot[const.RDBOND2IDX[bond_type]] = 1
-    else:
-        raise Exception('Unknown bond type {}'.format(bond_type))
+    if bond_type not in const.RDBOND2IDX:
+        bond_type = Chem.rdchem.BondType.ZERO
+    one_hot[const.RDBOND2IDX[bond_type]] = 1
         
     return one_hot
 
 def parse_molecule(mol):
     atom_one_hots = []
-    for atom in mol.GetAtoms():
-        atom_one_hots.append(atom_one_hot(atom.GetSymbol()))
+    non_h_indices = []  # Keep track of non-hydrogen atom indices
+    
+    # First pass: collect non-hydrogen atoms and their indices
+    for idx, atom in enumerate(mol.GetAtoms()):
+        if atom.GetSymbol() != 'H':
+            atom_one_hots.append(atom_one_hot(atom.GetSymbol()))
+            non_h_indices.append(idx)
 
-    # if mol has no conformer, positions is 0
+    # Get positions for non-hydrogen atoms
     if mol.GetNumConformers() == 0:
-        positions = np.zeros((mol.GetNumAtoms(), 3))
+        positions = np.zeros((len(non_h_indices), 3))
     else:
-        positions = mol.GetConformer().GetPositions()
+        all_positions = mol.GetConformer().GetPositions()
+        positions = all_positions[non_h_indices]
 
+    # Get bonds between non-hydrogen atoms
     bonds = []
+    old_idx_to_new = {old_idx: new_idx for new_idx, old_idx in enumerate(non_h_indices)}
+    
     for bond in mol.GetBonds():
         i = bond.GetBeginAtomIdx()
         j = bond.GetEndAtomIdx()
-        one_hot = bond_one_hot(bond)
-        bonds.append([i, j] + one_hot)
-        bonds.append([j, i] + one_hot)
+        # Only include bonds where both atoms are non-hydrogen
+        if i in old_idx_to_new and j in old_idx_to_new:
+            one_hot = bond_one_hot(bond)
+            new_i = old_idx_to_new[i]
+            new_j = old_idx_to_new[j]
+            bonds.append([new_i, new_j] + one_hot)
+            bonds.append([new_j, new_i] + one_hot)
 
     return positions, np.array(atom_one_hots), np.array(bonds)
 
@@ -277,7 +284,7 @@ def process_chunk(chunk_ids):
             cursor.execute("""
                 SELECT id, ligand_name, protein_name, molecule_pos, molecule_one_hot,
                        molecule_bonds, protein_pos, protein_one_hot, protein_contacts,
-                       protein_backbone, is_pocket, smiles
+                       protein_backbone, is_pocket
                 FROM raw_datasets
                 WHERE id = ANY(%s)
             """, (chunk_ids,))
@@ -297,7 +304,6 @@ def process_chunk(chunk_ids):
                     'protein_contacts': pickle.loads(raw_item[8]),
                     'protein_backbone': pickle.loads(raw_item[9]),
                     'is_pocket': pickle.loads(raw_item[10]),
-                    'smiles': raw_item[11]
                 }
 
                 result = process_single_item(raw_dict, torch.device('cpu'))
@@ -720,8 +726,10 @@ def test_pocket_dataset():
         if 'dataset' in locals():
             del dataset
 
-def add_split_column():
-    """Add a split column to processed_datasets and assign data to train/val/test sets"""
+def set_split():
+    """Add a split column to processed_datasets and assign data to train/val/test sets.
+    Proteins from COACH420 and Holo4K will be assigned to test set.
+    Others will be split between train and validation sets (50 for validation)."""
     try:
         with db_connection() as conn:
             cursor = conn.cursor()
@@ -731,43 +739,65 @@ def add_split_column():
                 ALTER TABLE processed_datasets 
                 ADD COLUMN IF NOT EXISTS split TEXT
             """)
-                        
-            # Get all IDs
-            cursor.execute("SELECT id FROM processed_datasets ORDER BY id")
-            all_ids = [row[0] for row in cursor.fetchall()]
-
-            total_count = len(all_ids)
             
-            # Randomly select indices for val and test sets
+            # Print initial statistics
+            cursor.execute("""
+                SELECT 
+                    COUNT(*) as total,
+                    SUM(CASE WHEN in_coach420 IS TRUE THEN 1 ELSE 0 END) as coach420_count,
+                    SUM(CASE WHEN in_holo4k IS TRUE THEN 1 ELSE 0 END) as holo4k_count,
+                    SUM(CASE WHEN in_coach420 IS TRUE AND in_holo4k IS TRUE THEN 1 ELSE 0 END) as both_count
+                FROM processed_datasets
+            """)
+            initial_stats = cursor.fetchone()
+            print("\nInitial dataset statistics:")
+            print(f"Total proteins: {initial_stats[0]}")
+            print(f"Proteins in COACH420: {initial_stats[1]}")
+            print(f"Proteins in Holo4K: {initial_stats[2]}")
+            print(f"Proteins in both datasets: {initial_stats[3]}")
+            
+            # First, assign test set (COACH420 and Holo4K proteins)
+            cursor.execute("""
+                UPDATE processed_datasets 
+                SET split = 'test' 
+                WHERE in_coach420 IS TRUE OR in_holo4k IS TRUE
+            """)
+            
+            # Get remaining proteins (not in test set) for train/val split
+            cursor.execute("""
+                SELECT id 
+                FROM processed_datasets 
+                WHERE in_coach420 IS FALSE AND in_holo4k IS FALSE
+                ORDER BY id
+            """)
+            remaining_ids = [row[0] for row in cursor.fetchall()]
+            
+            print(f"\nNumber of remaining proteins for train/val split: {len(remaining_ids)}")
+            
+            if len(remaining_ids) == 0:
+                print("\nWarning: No proteins remaining for train/val split!")
+                print("All proteins are from COACH420 or Holo4K.")
+                return
+            
+            # Randomly select 50 for validation (or all if less than 50)
             np.random.seed(42)  # For reproducibility
-            indices = np.random.permutation(len(all_ids))
-            val_indices = indices[:50]
-            test_indices = indices[50:1050]
-            train_indices = indices[1050:]
+            val_size = min(50, len(remaining_ids))
+            val_indices = np.random.choice(len(remaining_ids), size=val_size, replace=False)
+            val_ids = [remaining_ids[i] for i in val_indices]
             
-            # Update val set
-            val_ids = [all_ids[i] for i in val_indices]
+            # Update validation set
             cursor.execute("""
                 UPDATE processed_datasets 
                 SET split = 'val' 
                 WHERE id = ANY(%s)
             """, (val_ids,))
             
-            # Update test set
-            test_ids = [all_ids[i] for i in test_indices]
-            cursor.execute("""
-                UPDATE processed_datasets 
-                SET split = 'test' 
-                WHERE id = ANY(%s)
-            """, (test_ids,))
-            
-            # Update train set
-            train_ids = [all_ids[i] for i in train_indices]
+            # Update remaining as training set
             cursor.execute("""
                 UPDATE processed_datasets 
                 SET split = 'train' 
-                WHERE id = ANY(%s)
-            """, (train_ids,))
+                WHERE split IS NULL
+            """)
             
             # Verify the split
             cursor.execute("""
@@ -781,18 +811,106 @@ def add_split_column():
             for split, count in split_counts:
                 print(f"{split}: {count} samples")
             
+            # Print additional statistics about test set
+            cursor.execute("""
+                SELECT 
+                    COUNT(*) as total_test,
+                    SUM(CASE WHEN in_coach420 IS TRUE THEN 1 ELSE 0 END) as coach420_count,
+                    SUM(CASE WHEN in_holo4k IS TRUE THEN 1 ELSE 0 END) as holo4k_count,
+                    SUM(CASE WHEN in_coach420 IS TRUE AND in_holo4k IS TRUE THEN 1 ELSE 0 END) as both_count
+                FROM processed_datasets 
+                WHERE split = 'test'
+            """)
+            test_stats = cursor.fetchone()
+            
+            print("\nTest set statistics:")
+            print(f"Total test samples: {test_stats[0]}")
+            print(f"From COACH420: {test_stats[1]}")
+            print(f"From Holo4K: {test_stats[2]}")
+            print(f"In both datasets: {test_stats[3]}")
+            
             conn.commit()
             cursor.close()
             
-            print("\nSuccessfully added split column and assigned data to train/val/test sets")
+            print("\nSuccessfully assigned data to train/val/test sets")
             
     except Exception as e:
         print(f"Error adding split column: {str(e)}")
         raise e
 
+def check_overlap():
+    """Add and populate in_coach420 and in_holo4k columns to processed_datasets table"""
+    try:
+        with db_connection() as conn:
+            cursor = conn.cursor()
+            
+            # Add new columns if they don't exist
+            cursor.execute("""
+                ALTER TABLE processed_datasets 
+                ADD COLUMN IF NOT EXISTS in_coach420 BOOLEAN DEFAULT FALSE,
+                ADD COLUMN IF NOT EXISTS in_holo4k BOOLEAN DEFAULT FALSE
+            """)
+            
+            # Get all unique protein names from processed_datasets
+            cursor.execute("SELECT DISTINCT pname FROM processed_datasets")
+            processed_proteins = {row[0] for row in cursor.fetchall()}
+            
+            # Get all protein names from COACH420 (removing chain IDs)
+            cursor.execute("SELECT name FROM coach420_proteins")
+            coach420_proteins = {row[0][:-1] for row in cursor.fetchall()}
+            
+            # Get all protein names from Holo4K
+            cursor.execute("SELECT name FROM holo4k_proteins")
+            holo4k_proteins = {row[0] for row in cursor.fetchall()}
+            
+            # Update in_coach420 column
+            for protein in processed_proteins:
+                is_in_coach420 = protein in coach420_proteins
+                cursor.execute("""
+                    UPDATE processed_datasets 
+                    SET in_coach420 = %s 
+                    WHERE pname = %s
+                """, (is_in_coach420, protein))
+            
+            # Update in_holo4k column
+            for protein in processed_proteins:
+                is_in_holo4k = protein in holo4k_proteins
+                cursor.execute("""
+                    UPDATE processed_datasets 
+                    SET in_holo4k = %s 
+                    WHERE pname = %s
+                """, (is_in_holo4k, protein))
+            
+            # Print statistics
+            cursor.execute("""
+                SELECT 
+                    COUNT(*) as total,
+                    SUM(CASE WHEN in_coach420 THEN 1 ELSE 0 END) as coach420_count,
+                    SUM(CASE WHEN in_holo4k THEN 1 ELSE 0 END) as holo4k_count,
+                    SUM(CASE WHEN in_coach420 AND in_holo4k THEN 1 ELSE 0 END) as both_count
+                FROM processed_datasets
+            """)
+            stats = cursor.fetchone()
+            
+            print("\nDataset Origin Statistics:")
+            print(f"Total proteins: {stats[0]}")
+            print(f"Proteins in COACH420: {stats[1]}")
+            print(f"Proteins in Holo4K: {stats[2]}")
+            print(f"Proteins in both datasets: {stats[3]}")
+            
+            conn.commit()
+            cursor.close()
+            
+            print("\nSuccessfully added and populated dataset origin columns")
+            
+    except Exception as e:
+        print(f"Error adding dataset origin columns: {str(e)}")
+        raise e
+
 if __name__ == "__main__":
     # Use multiprocessing Pool to run the parallel processing
-    # parallel_preprocess(num_workers=12, batch_size=10)
+    parallel_preprocess(num_workers=12, batch_size=10)
+    check_overlap()
+    set_split()
     test_pocket_dataset()
-    # add_split_column()
 #%%

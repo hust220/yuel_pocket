@@ -20,5 +20,5 @@ echo "Running on host $(hostname)"
 echo "Using $SLURM_CPUS_ON_NODE CPUs"
 echo "With GPU: $CUDA_VISIBLE_DEVICES"
 
-python prepare_dataset.py --num_workers 16 --batch_size 16
+python prepare_raw_dataset.py --num_workers 16 --batch_size 16
 

@@ -51,3 +51,60 @@ def db_connection(dbname=None):
     finally:
         if conn:
             conn.close()
+
+def add_column(table_name, column_name, column_type):
+    """Add a column to a table if it doesn't exist.
+    
+    Args:
+        table_name (str): Name of the table
+        column_name (str): Name of the column to add
+        column_type (str): PostgreSQL data type of the column
+    """
+    with db_connection() as conn:
+        cur = conn.cursor()
+        # Check if column exists
+        cur.execute("""
+            SELECT EXISTS (
+                SELECT 1 
+                FROM information_schema.columns 
+                WHERE table_name = %s 
+                AND column_name = %s
+            );
+        """, (table_name, column_name))
+        column_exists = cur.fetchone()[0]
+        
+        if not column_exists:
+            cur.execute(f"""
+                ALTER TABLE {table_name} 
+                ADD COLUMN {column_name} {column_type};
+            """)
+            conn.commit()
+            print(f"Added column {column_name} to table {table_name}")
+        else:
+            print(f"Column {column_name} already exists in table {table_name}") 
+
+def db_select(table_name, column_name, condition, is_pickle=False, is_bytea=False):
+    import pickle
+    
+    with db_connection() as conn:
+        cur = conn.cursor()
+        cur.execute(f"""
+            SELECT {column_name} 
+            FROM {table_name} 
+            WHERE {condition}
+        """)
+        
+        result = cur.fetchone()
+        if result is None:
+            raise ValueError(f"No data found for {condition}")
+        
+        if is_pickle:
+            # Convert bytea to numpy array using pickle
+            data = pickle.loads(result[0])
+        elif is_bytea:
+            data = result[0].tobytes().decode('utf-8')
+        else:
+            data = result[0]
+    
+    return data
+
