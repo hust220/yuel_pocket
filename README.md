@@ -120,19 +120,6 @@ yuel_pocket/
 └── logs/            # Training logs
 ```
 
-## Citing
-
-If you use YuelPocket in your research, please cite:
-
-```bibtex
-@article{yuel_pocket,
-  title={YuelPocket: Protein-ligand binding site prediction with graph neural network},
-  author={Your Name},
-  journal={Your Journal},
-  year={2024}
-}
-```
-
 ## Contact
 
 If you have any questions, please contact me at jianopt@gmail.com
