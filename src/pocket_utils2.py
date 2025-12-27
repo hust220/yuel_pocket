@@ -13,6 +13,92 @@ from src.db_utils import db_connection
 import pickle
 import time
 from sklearn.cluster import DBSCAN
+from scipy.spatial import KDTree
+
+def generate_sphere_points(n: int) -> np.ndarray:
+    """Generate n uniformly distributed points on a unit sphere using Fibonacci lattice."""
+    indices = np.arange(0, n, dtype=float) + 0.5
+    phi = np.arccos(1 - 2*indices/n)
+    theta = np.pi * (1 + 5**0.5) * indices
+    x, y, z = np.cos(theta) * np.sin(phi), np.sin(theta) * np.sin(phi), np.cos(phi)
+    return np.stack([x, y, z], axis=1)
+
+def get_sas_points_shrake_rupley(structure: Structure, probe_radius: float = 1.4, n_points_per_atom: int = 96) -> Tuple[np.ndarray, np.ndarray]:
+    """Generate solvent accessible surface points using Shrake-Rupley algorithm.
+    
+    Args:
+        structure: Structure object
+        probe_radius: Probe radius (default 1.4A for water)
+        n_points_per_atom: Number of points to sample per atom
+        
+    Returns:
+        tuple: (points, scores) 
+               Note: 'scores' here will be dummy values (e.g. 1.0) as SR is geometric.
+    """
+    atoms = structure[0].get_atoms()
+    coords = np.array([atom.get_coord() for atom in atoms])
+    n_atoms = len(atoms)
+    
+    # Define VDW radii
+    vdw_radii_dict = {'C': 1.7, 'N': 1.55, 'O': 1.52, 'S': 1.8, 'H': 1.2}
+    radii = []
+    for atom in atoms:
+        element = atom.element if atom.element else 'C'
+        radii.append(vdw_radii_dict.get(element, 1.7))
+    radii = np.array(radii)
+    
+    # Expanded radii for SAS check
+    expanded_radii = radii + probe_radius
+    
+    # Build neighbor search tree
+    tree = KDTree(coords)
+    
+    sas_points = []
+    
+    # Pre-generate unit sphere points
+    unit_sphere = generate_sphere_points(n_points_per_atom)
+    
+    # This loop can be slow in pure Python for large proteins, but is standard for SR
+    for i in range(n_atoms):
+        center = coords[i]
+        r = expanded_radii[i]
+        
+        # Generate points for this atom
+        atom_sphere_points = center + unit_sphere * r
+        
+        # Find neighbors that could overlap
+        max_possible_r = np.max(expanded_radii)
+        neighbor_indices = tree.query_ball_point(center, r + max_possible_r)
+        
+        # Filter neighbors: exclude self
+        neighbor_indices = [idx for idx in neighbor_indices if idx != i]
+        
+        if not neighbor_indices:
+            sas_points.append(atom_sphere_points)
+            continue
+            
+        neighbor_coords = coords[neighbor_indices]
+        neighbor_radii = expanded_radii[neighbor_indices]
+        
+        # Vectorized check for point occlusion
+        P = atom_sphere_points[:, np.newaxis, :]
+        N = neighbor_coords[np.newaxis, :, :]
+        R_sq = neighbor_radii**2
+        
+        dists_sq = np.sum((P - N)**2, axis=2)
+        is_blocked = np.any(dists_sq < R_sq[np.newaxis, :] - 1e-6, axis=1)
+        
+        valid_points = atom_sphere_points[~is_blocked]
+        if len(valid_points) > 0:
+            sas_points.append(valid_points)
+            
+    if not sas_points:
+        return np.array([]), np.array([])
+        
+    all_points = np.vstack(sas_points)
+    scores = np.ones(len(all_points))
+    
+    return all_points, scores
 
 def get_solvent_accessible_points(structure: Structure, grid_spacing: float = 0.5, probe_radius: float = 1.5) -> np.ndarray:
     """Generate solvent accessible points around the protein using FFT.

@@ -8,6 +8,25 @@ from collections import defaultdict
 import requests
 import tempfile
 from io import StringIO
+from scipy.spatial import KDTree
+
+def pdb_line(record: str, atom_id: int, atom_name: str, alt_loc: str, res_name: str, chain_id: str, res_id: int, insertion: str, x: float, y: float, z: float, occupancy: float, temp_factor: float, element: str, charge: str):
+    record = f"{record:<6}"
+    atom_id = f"{atom_id:>5}"
+    atom_name = f"{atom_name:<4}"
+    alt_loc = alt_loc
+    res_name = f"{res_name:<3}"
+    chain_id = chain_id
+    res_id = f"{res_id:>4}"
+    insertion = insertion
+    x = f"{x:>8.3f}"
+    y = f"{y:>8.3f}"
+    z = f"{z:>8.3f}"
+    occupancy = f"{occupancy:>6.2f}"
+    temp_factor = f"{temp_factor:>6.2f}"
+    element = f"{element:>2}"
+    charge = f"{charge:>2}"
+    return f"{record}{atom_id} {atom_name}{alt_loc}{res_name} {chain_id}{res_id}{insertion}   {x}{y}{z}{occupancy}{temp_factor}          {element}{charge}"
 
 def three_to_one_letter(res_name: str) -> str:
     """Convert three-letter amino acid code to one-letter code.
@@ -53,27 +72,21 @@ class Atom:
         return np.array([self.x, self.y, self.z])
     
     def to_pdb(self) -> str:
-        """Convert atom to PDB format line."""
-        # if self.pdb_line is not None:
-        #     return self.pdb_line
-            
-        record = f"{self.record:<6}"
-        atom_id = f"{self.atom_id:>5}"
-        atom_name = f"{self.atom_name:<4}"
-        alt_loc = self.alt_loc
-        res_name = f"{self.res_name:<3}"
-        chain_id = self.chain_id
-        res_id = f"{self.res_id:>4}"
-        insertion = self.insertion
-        x = f"{self.x:>8.3f}"
-        y = f"{self.y:>8.3f}"
-        z = f"{self.z:>8.3f}"
-        occupancy = f"{self.occupancy:>6.2f}"
-        temp_factor = f"{self.temp_factor:>6.2f}"
-        element = f"{self.element:>2}"
-        charge = f"{self.charge:>2}"
-        
-        return f"{record}{atom_id} {atom_name}{alt_loc}{res_name} {chain_id}{res_id}{insertion}   {x}{y}{z}{occupancy}{temp_factor}          {element}{charge}\n"
+        return pdb_line(self.record, 
+                        self.atom_id, 
+                        self.atom_name, 
+                        self.alt_loc, 
+                        self.res_name, 
+                        self.chain_id, 
+                        self.res_id, 
+                        self.insertion, 
+                        self.x, 
+                        self.y, 
+                        self.z, 
+                        self.occupancy, 
+                        self.temp_factor, 
+                        self.element, 
+                        self.charge) + '\n'
 
 class Residue:
     """Represents a residue in a PDB file."""
@@ -250,6 +263,12 @@ class Structure:
     
     def __getitem__(self, index: int) -> Model:
         return self.models[index]
+    
+    def get_atoms(self) -> List[Atom]:
+        """Get all atoms in the first model of the structure."""
+        if not self.models:
+            return []
+        return self.models[0].get_atoms()
     
     def read(self, source, **kwargs) -> None:
         """Read a PDB file from various sources.
@@ -439,6 +458,112 @@ class Structure:
                         sequence.append(one_letter)
         
         return ''.join(sequence)
+
+def generate_sphere_points(n: int) -> np.ndarray:
+    """Generate n uniformly distributed points on a unit sphere using Fibonacci lattice."""
+    indices = np.arange(0, n, dtype=float) + 0.5
+    phi = np.arccos(1 - 2*indices/n)
+    theta = np.pi * (1 + 5**0.5) * indices
+    x, y, z = np.cos(theta) * np.sin(phi), np.sin(theta) * np.sin(phi), np.cos(phi)
+    return np.stack([x, y, z], axis=1)
+
+def get_sas_points_shrake_rupley(structure: Structure, probe_radius: float = 1.4, n_points_per_atom: int = 15, target_points: Optional[int] = None):
+    """Generate solvent accessible surface points using Shrake-Rupley algorithm.
+    
+    Args:
+        structure: Structure object
+        probe_radius: Probe radius (default 1.4A for water)
+        n_points_per_atom: Number of points to sample per atom
+        target_points: Stop after finding this many surface points. If None, compute all.
+        
+    Returns:
+        tuple: (points, scores) 
+               Note: 'scores' here will be dummy values.
+    """
+    if len(structure.models) == 0:
+         return np.empty((0, 3)), np.empty((0,))
+         
+    atoms = structure[0].get_atoms()
+    # Handle empty structure case
+    if not atoms:
+        return np.empty((0, 3)), np.empty((0,))
+
+    coords = np.array([atom.get_coord() for atom in atoms])
+    n_atoms = len(atoms)
+    
+    # Define VDW radii
+    vdw_radii_dict = {'C': 1.7, 'N': 1.55, 'O': 1.52, 'S': 1.8, 'H': 1.2}
+    radii = []
+    for atom in atoms:
+        element = atom.element if atom.element else 'C'
+        radii.append(vdw_radii_dict.get(element, 1.7))
+    radii = np.array(radii)
+    
+    # Expanded radii for SAS check
+    expanded_radii = radii + probe_radius
+    
+    # Build neighbor search tree
+    tree = KDTree(coords)
+    
+    sas_points = []
+    
+    # Pre-generate unit sphere points
+    unit_sphere = generate_sphere_points(n_points_per_atom)
+    
+    # Determine processing order and limit
+    if target_points is None:
+        atom_indices = np.arange(n_atoms)
+    else:
+        atom_indices = np.random.permutation(n_atoms)
+    
+    processed_count = 0
+    
+    for i in atom_indices:
+        # Stop if we have enough points (only if limitation is set)
+        if target_points is not None and processed_count >= target_points:
+            break
+            
+        center = coords[i]
+        r = expanded_radii[i]
+        
+        # Generate points for this atom
+        atom_sphere_points = center + unit_sphere * r
+        
+        # Find neighbors that could overlap
+        max_possible_r = np.max(expanded_radii)
+        neighbor_indices = tree.query_ball_point(center, r + max_possible_r)
+        
+        # Filter neighbors: exclude self
+        neighbor_indices = [idx for idx in neighbor_indices if idx != i]
+        
+        if not neighbor_indices:
+            sas_points.append(atom_sphere_points)
+            processed_count += len(atom_sphere_points)
+            continue
+            
+        neighbor_coords = coords[neighbor_indices]
+        neighbor_radii = expanded_radii[neighbor_indices]
+        
+        # Vectorized check for point occlusion
+        P = atom_sphere_points[:, np.newaxis, :]
+        N = neighbor_coords[np.newaxis, :, :]
+        R_sq = neighbor_radii**2
+        
+        dists_sq = np.sum((P - N)**2, axis=2)
+        is_blocked = np.any(dists_sq < R_sq[np.newaxis, :] - 1e-6, axis=1)
+        
+        valid_points = atom_sphere_points[~is_blocked]
+        if len(valid_points) > 0:
+            sas_points.append(valid_points)
+            processed_count += len(valid_points)
+            
+    if not sas_points:
+        return np.empty((0, 3)), np.empty((0,))
+        
+    all_points = np.vstack(sas_points)
+    scores = np.ones(len(all_points))
+    
+    return all_points, scores
 
 def download_pdb(pdb_id: str, save_to_file: bool = True) -> Union[str, str]:
     """Download a PDB file from RCSB PDB.

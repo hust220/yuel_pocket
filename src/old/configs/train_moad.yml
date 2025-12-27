@@ -1,0 +1,24 @@
+project: 'yuel_pocket'
+exp_name: 'moad'
+checkpoints: models
+logs: logs
+device: gpu
+log_iterations: 20
+wandb_entity: null
+enable_progress_bar: True
+
+# Model parameters
+lr: 2.0e-4
+batch_size: 8
+n_layers: 16
+n_epochs: 1000
+test_epochs: 20
+n_stability_samples: 1
+nf: 32
+activation: silu
+sin_embedding: False
+normalization_factor: 100
+aggregation_method: 'sum'
+data_augmentation: True
+
+resume:
