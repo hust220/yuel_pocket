@@ -129,6 +129,14 @@ python -m src.pos_sc3.train
 
 
 
+
+## Benchmarking & Reproducibility
+
+The `benchmark/` directory contains scripts used to evaluate the models on various datasets (Holo4k, PDBbind, Plinder, etc.). To reproduce the results reported in the paper, you will need to run these scripts.
+
+Since the benchmark datasets are large, the repository only contains the evaluation code. The full raw data and necessary files to reproduce the experiments are available at:
+[https://zenodo.org/records/18065818](https://zenodo.org/records/18065818)
+
 ## Project Structure
 
 ```
@@ -136,13 +144,14 @@ yuel_pocket/
 ├── baselines/        # Baseline methods (P2Rank, GVP, etc.)
 ├── benchmark/        # Benchmarking scripts (Holo4k, PDBbind, PLINDER)
 ├── checkpoints/      # Pretrained model weights
-├── src/              # Source code
-│   ├── residues2/    # Residue-level prediction module
-│   ├── pos_sc3/      # Coordinate-level prediction module
-│   ├── egnn.py       # EGNN implementation
-│   ├── pdb_utils.py  # PDB processing utilities
-│   └── ...
-└── analysis/         # Analysis scripts
+├── examples/         # Example input files
+├── scripts/          # Data preparation scripts (PLINDER)
+└── src/              # Source code
+    ├── residues2/    # Residue-level prediction module
+    ├── pos_sc3/      # Coordinate-level prediction module
+    ├── egnn.py       # EGNN implementation
+    ├── pdb_utils.py  # PDB processing utilities
+    └── ...
 ```
 
 ## Contact
