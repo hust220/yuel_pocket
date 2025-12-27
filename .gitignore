@@ -21,3 +21,7 @@ __pycache__
 /baselines/p2rank
 /baselines/LigBind
 /baselines/hh-suite
+
+# Ignore sensitive/doc files
+wandb_api_key.txt
+/doc/
