@@ -77,15 +77,15 @@ def process_pdb_file(pdb_path, ligands):
     sequence = get_protein_sequence(structure[0])
     
     # Find ligands (HETATM records)
-    ligands = []
+    found_ligands = []
     for model in structure:
         for chain in model:
             for residue in chain:
                 if residue.res_name in ligands:
                     ligand_pdb = residue.to_pdb()
-                    ligands.append((residue.res_name, ligand_pdb))
+                    found_ligands.append((residue.res_name, ligand_pdb))
     
-    return protein_name, sequence, pdb_content, ligands
+    return protein_name, sequence, pdb_content, found_ligands
 
 def import_pdb_files(pdb_dir, ds_file):
     """Import all PDB files from the specified directory"""
@@ -111,7 +111,9 @@ def import_pdb_files(pdb_dir, ds_file):
                 cursor.execute("""
                     INSERT INTO holo4k_proteins (name, pdb, sequence)
                     VALUES (%s, %s, %s)
-                    ON CONFLICT (name) DO NOTHING
+                    ON CONFLICT (name) DO UPDATE 
+                    SET pdb = EXCLUDED.pdb, 
+                        sequence = EXCLUDED.sequence
                 """, (protein_name, pdb_content, sequence))
                 
                 # Insert ligands
@@ -119,7 +121,8 @@ def import_pdb_files(pdb_dir, ds_file):
                     cursor.execute("""
                         INSERT INTO holo4k_ligands (name, protein_name, pdb)
                         VALUES (%s, %s, %s)
-                        ON CONFLICT (name, protein_name) DO NOTHING
+                        ON CONFLICT (name, protein_name) DO UPDATE 
+                        SET pdb = EXCLUDED.pdb
                     """, (ligand_name, protein_name, ligand_pdb))
                 
                 conn.commit()

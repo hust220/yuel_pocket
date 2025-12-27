@@ -1,14 +1,23 @@
-__pycache__
-.cursor
+/data
 /logs
+/slurm_logs
+__pycache__
 /models
-/test_output
-/src/*.pdb
-/src/*.pse
-/src/*.mol
-/src/*.png
-/src/*.svg
-/analysis/casf_test/power_screening
-/analysis/casf_test/power_screening.tar
-*.ckpt
-.DS_Store
+
+# Ignore everything in benchmark recursively
+/benchmark/**/*
+# But keep directories (so we can find files inside)
+!/benchmark/**/
+# And keep .py and .sh files
+!/benchmark/**/*.py
+!/benchmark/**/*.sh
+
+# Ignore p2rank baseline files
+/baselines/p2rank_2.5.1
+/baselines/p2rank_2.5.1.tar.gz
+
+# Ignore external git repositories (we don't need their content)
+/baselines/gvp
+/baselines/p2rank
+/baselines/LigBind
+/baselines/hh-suite
