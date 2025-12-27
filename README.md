@@ -13,7 +13,6 @@ Install the necessary packages:
 pip install pdb-tools biopython imageio networkx rdkit pyarrow pandas
 pip install torch torchvision lightning
 pip install scipy scikit-learn tqdm wandb
-pip install egnn-pytorch
 ```
 
 > **Important**: Always run the python scripts as modules (e.g., `python -m src.residues2.app`) from the project root directory. Do **not** run them directly by path (e.g., `python src/residues2/app.py`), as this will cause import errors.
