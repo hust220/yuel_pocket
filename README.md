@@ -107,7 +107,7 @@ If the file is not found, the script will show a warning but proceed with traini
 Scripts for downloading and processing the PLINDER dataset are available in `scripts/plinder_prep/`.
 
 1.  **Download Data**:
-    Use `download_plinder.sh` to download the dataset. The models read directly from the PLINDER zip structure.
+    Create a `data/` directory and use `download_plinder.sh` to download the dataset into it. The models read directly from the PLINDER zip structure.
 
 2.  **Precompute SAS Points**:
     Run `precompute_sas.py` to generate the surface points required for the `pos_sc3` model.
